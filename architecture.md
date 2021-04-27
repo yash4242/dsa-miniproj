@@ -12,8 +12,8 @@
 ### Struct of a person contains:
 - location (curreny city of residence)
 - status (0 for OK, 1 for +ve)
-- list of his primary contacts ==> this list will be of a struct containing `struct person` and `int when_they_met`
-- list of his secondary contacts
+- list of his primary contacts ==> this list will be of a struct containing `struct person` and the absolute date of meeting `int when_they_met`
+- list of his secondary contacts ==> this list will be of a struct containing `struct person` and the absolte date of meeting`int when_they_met`
 - the date quarantine_ends_on
 - int risk_factor = {0,1,2}: (yes we do need this, read `Struct of a city` subheading) 
     - reason: in case a person X tests positive, then a person P who came into contact with X will be his primary contact, so P's risk factor will be 2
