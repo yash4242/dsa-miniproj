@@ -26,3 +26,41 @@ struct city{
 
 typedef struct city city;
 typedef struct city* city_ptr;
+
+void Print_positive(struct person peopleArr[] , int N)
+{
+
+	for(int i = 0 ; i<N ; i++)
+	{
+		if(peopleArr[i].covidStatus==1)
+		{
+			printf("person(%d)\n", i+1 );
+		}
+	}
+    
+}
+
+
+void GetCurrentStatus(person A)
+{
+if (A.covidStatus==1)
+{
+	printf("Current Status = Positve\n");
+	printf("Your Quaratine ends in  %d  days\n");
+	printf("Stay where you are.\n Quaratine yourself in a nearby city.\n Avoid contacts with people\n");
+
+}
+
+else
+{
+	printf("Current Status = Negative\n");
+	printf("Please obey all the necessary guidelines issued by the Govt. and practice all the safety measures\n");
+}
+
+
+printf("You are currently in City %d\n", A.location);
+printf("You have a risk factor of %d\n", A.riskFactor);
+
+
+
+}
