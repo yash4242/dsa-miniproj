@@ -1,13 +1,14 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
 
 
 struct person{
-	int location // Current City of the person.
-	int covidStatus// 0 for healthy, 1 for Covid+ve
-	int quarantineEndsOn// date on which the quaranrine ends
-	int riskFactor // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
+	int Location // Current City of the person.
+	int CovidStatus// 0 for healthy, 1 for Covid+ve
+	int QuarantineEndsOn// date on which the quaranrine ends
+	int RiskFactor // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
 
 
 };
@@ -18,21 +19,21 @@ typedef struct person* person_ptr;
 
 
 struct city{
-	int dangerValue;
-	int Covid_pos_num;
-	int Primary_contacts;
-	int Secondary_contacts;
+	int DangerValue;
+	int CovidPosNum;
+	int PrimaryContacts;
+	int SecondaryContacts;
 };
 
 typedef struct city city;
 typedef struct city* city_ptr;
 
-void Print_positive(struct person peopleArr[] , int N)
+void Print_positive(struct person PeopleArr[] , int N)
 {
 
 	for(int i = 0 ; i<N ; i++)
 	{
-		if(peopleArr[i].covidStatus==1)
+		if(peopleArr[i].CovidStatus==1)
 		{
 			printf("person(%d)\n", i+1 );
 		}
@@ -43,10 +44,10 @@ void Print_positive(struct person peopleArr[] , int N)
 
 void GetCurrentStatus(person A)
 {
-if (A.covidStatus==1)
+if (A.CovidStatus==1)
 {
 	printf("Current Status = Positve\n");
-	printf("Your Quaratine ends in  %d  days\n");
+	printf("Your Quaratine ends in  %d  days\n", QuarantineEndsOn);
 	printf("Stay where you are.\n Quaratine yourself in a nearby city.\n Avoid contacts with people\n");
 
 }
@@ -58,8 +59,8 @@ else
 }
 
 
-printf("You are currently in City %d\n", A.location);
-printf("You have a risk factor of %d\n", A.riskFactor);
+printf("You are currently in City %d\n", A.Location);
+printf("You have a risk factor of %d\n", A.RiskFactor);
 
 
 
