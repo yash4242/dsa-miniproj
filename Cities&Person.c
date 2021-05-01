@@ -3,18 +3,18 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-struct primaryContacts{
+
+
+int Day = 0; //Primary Date works as a clock for the overall system
+
+struct Contacts{
 	int personID;
         int when_they_met;
-	struct primaryContacts* Next;
+	struct Contacts* Next;
 };
 
 
-struct secondaryContacts{
-	int personID;
-	int whenTheyMmet;
-	struct secondaryContacts* Next;
-};
+
 	
 
 
@@ -24,8 +24,8 @@ struct person{
 	int CovidStatus// 0 for healthy, 1 for Covid+ve
 	int QuarantineEndsOn// date on which the quaranrine ends
 	int RiskFactor // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
-        struct primaryContacts* primaryContactList;
-	struct secondaryContacts* secondaryContactList;
+        struct Contacts* primaryContactList;
+	struct Contacts* secondaryContactList;
 
 
 };
@@ -86,15 +86,15 @@ printf("You have a risk factor of %d\n", A.RiskFactor);
 
 }
 
-void UpdatePrimaryList(person_ptr A , int newContactID , int meet_date)
+void UpdateList1(person_ptr A , int newContactID , int meet_date)  // Used to add people in the person's Primary Contact List
 {
 
-	struct primaryContacts* NewContact = (struct primaryContacts*)malloc(sizeof(struct primaryContacts));
+	struct Contacts* NewContact = (struct Contacts*)malloc(sizeof(struct Contacts));
 
 	NewContact->personID = newContactID;
 	NewContact->when_they_met = meet_date;
 
-	struct primaryContacts* temp = A->primaryContactList;
+	struct Contacts* temp = A->primaryContactList;
 
 	while(temp->Next)
 	{
@@ -106,15 +106,19 @@ void UpdatePrimaryList(person_ptr A , int newContactID , int meet_date)
 }
 
 
-void UpdateSecondaryList(person_ptr A , int newContactID , int meet_date)
-{
 
-	struct secondaryContacts* NewContact = (struct secondaryContacts*)malloc(sizeof(struct secondaryContacts));
 
-	NewContact->personID = newContactID;
-	NewContact->when_they_met = meet_date;
 
-	struct secondaryContacts* temp = A->secondaryContactList;
+
+void UpdateList2(person_ptr A , int new_ContactID , int meet__date) // Used to add people in the person's Secondary Contact List
+{ 
+
+	struct Contacts* NewContact = (struct Contacts*)malloc(sizeof(struct Contacts));
+
+	NewContact->personID = new_ContactID;
+	NewContact->when_they_met = meet__date;
+
+	struct Contacts* temp = A->secondaryContactList;
 
 	while(temp->Next)
 	{
@@ -124,9 +128,60 @@ void UpdateSecondaryList(person_ptr A , int newContactID , int meet_date)
 	temp->Next = NewContact;
 	NewContact->Next = NULL;
 }
-	
+
+
+
+
+
+
+void IncrementDay(int* Day , person peopleArray[] , int N)
+{
+	for(int i = 0 ; i<N ; i++)
+	{
+		if(peopleArray[i].CovidStatus==1)
+		{
+			peopleArray[i].QuarantineEndsOn = peopleArray[i].QuarantineEndsOn - 1; // If person is suffering from Covid then his/her Quarantine period decreases by 1
+			
+			person* temp1 = peopleArray[i].primaryContactList->Next;
+			person* temp2 = peopleArray[i].secondaryContactList->Next;
+			
+			while(temp1)  // Updating the risk factor of all the contacts in the primary List of the person
+			{
+				if(temp1->CovidStatus !=1)
+				{
+					temp1->RiskFactor = 2;
+					
+				}
+				
+				else  // If there is an individual that is covid positve in the primary List his/her Quarantine period gets decremented by one Day;
+				{
+					temp1->QuarantineEndsOn = temp1->QuarantineEndsOn - 1;
+				}
+			}
+			
+			while(temp2)
+			{
+				if(temp2->CovidStatus !=1)  // Updating the risk factor of all the contacts in the secondary List of the person
+				{
+					temp2->RiskFactor = 2;
+					
+				}
+				
+				else   // If there is an individual that is covid positve in the secondary List his/her Quarantine period gets decremented by one Day; 
+				{
+					temp2->QuarantineEndsOn = temp1->QuarantineEndsOn - 1;
+				}
+			}
+			
+		}
+	}
+}
+			
+
+
 
 	
 
+	
 
-  
+
