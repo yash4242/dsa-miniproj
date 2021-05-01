@@ -178,10 +178,6 @@ void IncrementDay(int* Day , person peopleArray[] , int N)
 }
 			
 
-
-
-	
-
 	
 
 
