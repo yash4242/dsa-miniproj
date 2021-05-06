@@ -134,47 +134,10 @@ void UpdateList2(person_ptr A , int new_ContactID , int meet__date) // Used to a
 
 
 
-void IncrementDay(int* Day , person peopleArray[] , int N)
+void IncrementDay(int Day)
 {
-	for(int i = 0 ; i<N ; i++)
-	{
-		if(peopleArray[i].CovidStatus==1)
-		{
-			peopleArray[i].QuarantineEndsOn = peopleArray[i].QuarantineEndsOn - 1; // If person is suffering from Covid then his/her Quarantine period decreases by 1
-			
-			person* temp1 = peopleArray[i].primaryContactList->Next;
-			person* temp2 = peopleArray[i].secondaryContactList->Next;
-			
-			while(temp1)  // Updating the risk factor of all the contacts in the primary List of the person
-			{
-				if(temp1->CovidStatus !=1)
-				{
-					temp1->RiskFactor = 2;
-					
-				}
-				
-				else  // If there is an individual that is covid positve in the primary List his/her Quarantine period gets decremented by one Day;
-				{
-					temp1->QuarantineEndsOn = temp1->QuarantineEndsOn - 1;
-				}
-			}
-			
-			while(temp2)
-			{
-				if(temp2->CovidStatus !=1)  // Updating the risk factor of all the contacts in the secondary List of the person
-				{
-					temp2->RiskFactor = 2;
-					
-				}
-				
-				else   // If there is an individual that is covid positve in the secondary List his/her Quarantine period gets decremented by one Day; 
-				{
-					temp2->QuarantineEndsOn = temp1->QuarantineEndsOn - 1;
-				}
-			}
-			
-		}
-	}
+	int* ptr = &Day;
+	*ptr++;
 }
 			
 
