@@ -134,10 +134,9 @@ void UpdateList2(person_ptr A , int new_ContactID , int meet__date) // Used to a
 
 
 
-void IncrementDay(int Day)
+void IncrementDay()
 {
-	int* ptr = &Day;
-	*ptr++;
+	Day++;
 }
 			
 
