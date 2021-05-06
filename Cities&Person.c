@@ -5,7 +5,7 @@
 
 
 struct person{
-	int Location // Current City of the person.
+	int location // Current City of the person.
 	int CovidStatus// 0 for healthy, 1 for Covid+ve
 	int QuarantineEndsOn// date on which the quaranrine ends
 	int RiskFactor // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
