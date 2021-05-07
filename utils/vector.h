@@ -1,41 +1,46 @@
+//DEPENDENCIES: pair
 #pragma once
-#include "miscstructs.h" 
+#include <stdlib.h>
+#include "pair.h" 
 
-//DEPENDECNCIES: miscstructs.h
+//DEPENDECNCIES: pair.h
 
-//NEED VECTOR OF <INT>--<INT>--<INT>
-struct vectorint
+//==============================VECTOR OF [INT][INT][INT]=============================
+struct vectorInt
 {
     int* arr;
-    int size;
+    int numelems;
     int capacity;
 };
-typedef struct vectorint vectorint;
+typedef struct vectorInt vectorInt;
+
+//======================== VECTORINT FUNCTIONS PROTOS====================================
+//mallocs a new vectorInt
+vectorInt* createVectorInt(int);
+
+//pushes ints into vectorInt
+void vectorIntPushBack(vectorInt*, int);
 
 
-//same functions as for vectorpair
 
-
-//=================================================================================//
-
-//NEED VECTOR OF <INT, INT>---<INT, INT>---
-struct vectorpair
+//============================VECTOR OF [INT, INT][INT, INT][INT, INT]===============================
+struct vectorPair
 {
     pair* arr;
-    int size; //how many elements are beig used/non garbage
+    int numelems; //how many elements are beig used/non garbage
     int capacity;    //in total how many slots have been allocated to the array
 };
 
-typedef struct vectorpair vectorpair;
+typedef struct vectorPair vectorPair;
 
-//FUNC PROTOTYPES
+//===============================================VECTORPAIR FUNC PROTOS==================================
 
-//create vector: malloc first the struct, then maybe( say 100) slots for the array inside the vector
+//mallocs a new vectorPair
+vectorPair* createVectorPair(int);
 
-//insert into vector: 
-//btw, insert into vectors has to take care that if a vector becomes larger than its 
-//allocated capacity, use realloc to get more capacity. (say, 1.5 times or twice)
-//personal experience: what has to be inserted into the vector, if we pass that as argument
-//in this insert func then life is quite easy
+//makes a pair of 2 ints and pushes it into vectorPair
+void vectorPairPushBack(vectorPair* vpp, int a, int b);
+
+
 
 //[OPTIONAL] should we remove those people who met the person more than 15 days ago?

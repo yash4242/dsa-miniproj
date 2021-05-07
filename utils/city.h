@@ -1,6 +1,7 @@
-#pragma once
-
 //DEPENDENCIES vector.h, miscstructs.h
+#pragma once
+#include "vector.h"
+
 
 struct city{
 	int dangerValue;

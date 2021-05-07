@@ -1,8 +1,8 @@
+//DEPENCIES: pair
 #pragma once
-#include "vector.h"
-#include "miscstructs.h"
-//Dependencies: vector.h,
-//              miscstructs.h for piar
+//#include "vector.h"
+#include "pair.h"
+
 struct person{
 	int location; // Current City of the person.
 	int covidStatus;// 0 for healthy, 1 for Covid+ve
@@ -18,7 +18,9 @@ struct person{
 typedef struct person person;
 typedef struct person* person_ptr;
 
-//NEEDED FUNCTIONS
+
+//NEEDED FUNCTIONS 
+//write the prototypes here and func definitions in ../src/person.c
 
 //in case this person comes out + then a function which informs his primary contacts& secondary contacts;
 //i.e. updates those people's riskFactor
