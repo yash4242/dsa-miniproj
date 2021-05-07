@@ -5,11 +5,10 @@
 
 
 
-int Day = 0; //Primary Date works as a clock for the overall system
-
+int Day = 0;         //Primary Date works as a clock for the overall system
 struct Contacts{
 	int personID;
-        int when_they_met;
+    int when_they_met;
 	struct Contacts* Next;
 };
 
@@ -20,15 +19,15 @@ struct Contacts{
 
 struct person{
 	int ID;
-	int Location // Current City of the person.
-	int CovidStatus// 0 for healthy, 1 for Covid+ve
-	int QuarantineEndsOn// date on which the quaranrine ends
-	int RiskFactor // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
-        struct Contacts* primaryContactList;
-	struct Contacts* secondaryContactList;
+	int Location;            // Current City of the person.
+	int CovidStatus;         // 0 for healthy, 1 for Covid+ve
+	int QuarantineEndsOn;    // date on which the quaranrine ends
+	int RiskFactor;          // 2--> If is a primary contact , 1--> If is a secondary contact , 0-->If none
+    int * PS_Contacts;       // Pointer to array of integers where 'i'th integer represents whether 
+							 // person 'i' is Primary or secondary contact of this person.
+							 
 
-
-};
+}; // As we don't know array of what size we should declare, I declared it as Pointer
 
 typedef struct person person;
 typedef struct person* person_ptr;
@@ -62,10 +61,10 @@ void Print_positive(struct person PeopleArr[] , int N)
 
 void GetCurrentStatus(person A)
 {
-if (A.CovidStatus==1)
+if (A.CovidStatus == 1)
 {
 	printf("Current Status = Positve\n");
-	printf("Your Quaratine ends in  %d  days\n", QuarantineEndsOn);
+	printf("Your Quaratine ends in  %d  days\n", A.QuarantineEndsOn - Day);
 	printf("Stay where you are.\n Quaratine yourself in a nearby city.\n Avoid contacts with people\n");
 
 }
@@ -94,7 +93,7 @@ void UpdateList1(person_ptr A , int newContactID , int meet_date)  // Used to ad
 	NewContact->personID = newContactID;
 	NewContact->when_they_met = meet_date;
 
-	struct Contacts* temp = A->primaryContactList;
+/*	struct Contacts* temp = A->primaryContactList;
 
 	while(temp->Next)
 	{
@@ -102,7 +101,9 @@ void UpdateList1(person_ptr A , int newContactID , int meet_date)  // Used to ad
 	}
 
 	temp->Next = NewContact;
-	NewContact->Next = NULL;
+	NewContact->Next = NULL;*/
+
+	A->PS_Contacts[newContactID] = 1;
 }
 
 
@@ -119,25 +120,26 @@ void UpdateList2(person_ptr A , int new_ContactID , int meet__date) // Used to a
 	NewContact->when_they_met = meet__date;
 
 	struct Contacts* temp = A->secondaryContactList;
-
+/*
 	while(temp->Next)
 	{
 		temp = temp->Next;
 	}
 
 	temp->Next = NewContact;
-	NewContact->Next = NULL;
+	NewContact->Next = NULL;*/
+
+	A->PS_Contacts[new_ContactID] = 2;
 }
 
 
 
 
 
-
-void IncrementDay(int Day)
+// Increments Day
+void IncrementDay()
 {
-	int* ptr = &Day;
-	*ptr++;
+	Day++;
 }
 			
 
