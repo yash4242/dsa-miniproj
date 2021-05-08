@@ -1,6 +1,6 @@
 //DEPENCIES: pair
 #pragma once
-//#include "vector.h"
+#include "vector.h"
 #include "pair.h"
 
 struct person{
@@ -8,10 +8,11 @@ struct person{
 	int covidStatus;// 0 for healthy, 1 for Covid+ve
 	int quarantineEndsOn;// date on which the quaranrine ends
 	int riskFactor; // 2--> If is a primary contact of a covid +ve , 1--> If is a secondary contact of a covid + , 0-->If none
-    pair contacts[1001]; ///[ALERT]=> 1001 taken this is a static value, if no. of ppl are more than 1000 then this needs to be changed
+    pair* contacts; //during initialising person struct, allocate n indices to this array where n is the no of people in total
     //pair's "first" element has 0/1/2: 1=> secondary contact of;
     //pairs "second" element has the date of meeting
     //aray's index means met which person
+
 
 };
 
