@@ -3,11 +3,12 @@
 #include "vector.h"
 #include "person.h"
 
-// Used to store id's of People living in a city
+/* Used to store id's of People living in a city
 struct People{
 	int id;						
 	struct People * next;
 };
+*/
 
 typedef struct People People;
 typedef struct People * People_Ptr;
@@ -20,7 +21,7 @@ struct city{
 	float noOfPrimary;        // calculating danger value.
 	float noOfSecondary;
     double safetyValue;       // = 1.0 / double(dangerValue); always DONT NEED THIS
-	struct People * head;     // use linked list of ints for list of persons in this city
+//	struct People * head;     // use linked list of ints for list of persons in this city
 };
 
 typedef struct city city;
@@ -43,11 +44,11 @@ void UpdateToPos(city C[],person P[],int array_of_positive[],int size);
 
 
 // This function Prints all primary and secondary contacts in a city
-void Print_P_S(city C[],person P[], int id_of_city);
+void Print_P_S(city C[],person P[], int id_of_city,int noOfPeople);
 
 
 // This function Prints all covid positive in a city
-void Print_Positives(city C[],person P[],int id_of_city);
+void Print_Positives(city C[],person P[],int id_of_city,int NoOfPeople);
 
 
 
