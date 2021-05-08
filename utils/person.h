@@ -1,7 +1,15 @@
+#ifndef _GRAPH_H_
+#define _GRAPH_H_
 //DEPENCIES: pair
-#pragma once
-#include "vector.h"
+// #pragma once
+// #include "vector.h"
+
 #include "pair.h"
+#include "city.h"
+
+typedef struct person person;
+typedef struct person* person_ptr;
+typedef person_ptr List;
 
 struct person{
 	int location; // Current City of the person.
@@ -16,12 +24,24 @@ struct person{
 
 };
 
-typedef struct person person;
-typedef struct person* person_ptr;
+#endif
 
 
 //NEEDED FUNCTIONS 
-//write the prototypes here and func definitions in ../src/person.c
+
+// prototypes here and func definitions in ../src/person.c
+
+// create an array of person with  their  respective id and sets the pointer to their contacts as NULL
+person_ptr CreatePersonArray(int No_Of_Persons);
+
+
+// Updates the array of person when two person meet i.e when a person goes from a city 1 to city 2
+person_ptr Update_Person_And_Contact(person_ptr P,int city1,int city2);
+
+// This function Prints all primary and secondary contacts of a person P
+// in the list L and  who all found posiitve updates their quarantine time
+void PrintList(List L);
+
 
 //in case this person comes out + then a function which informs his primary contacts& secondary contacts;
 //i.e. updates those people's riskFactor

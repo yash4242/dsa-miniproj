@@ -54,11 +54,28 @@ int main()
    
    
     person personArray[noOfPerson+1];                       //personArray Declaration
-    //pls write personarray initialisation and input 
+    //pls write personarray initialisation and input
+    int location;               //personArray initialisation
+    for(int i=1;i<=noOfPerson;++i)
+    {
+        scanf("%d",&location);
+        personArray[i].location = location;
+        personArray[i].covidStatus = 0;
+        personArray[i].quarantineEndsOn = 0; //0 implies not in quarantine
+        personArray[i].riskFactor = 0;
+        personArray[i].contacts = (pair*)malloc(noOfPerson * sizeof(pair));
+        assert(personArray[i].contacts != NULL);
+    }
 
-
-    city cityArray[noOfCity+1];                             //personArray Declaration
+    city cityArray[noOfCity+1];                             //cityArray Declaration
     //please write initialisation (and input if any)
+    for(int i=1;i<=noOfCity;++i)        //cityArray initialisation
+    {
+        cityArray[i].DangerValue = 0; //since initailly no one is covid +ve in the city
+        cityArray[i].CovidPosNum = 0; // same as above
+        cityArray[i].PrimaryContacts = 0;
+        cityArray[i].SecondaryContacts = 0;
+    }
 
     
     
@@ -109,6 +126,7 @@ void feedList()
 2) incrementing day
 currentDay++;
 
+
 3)make a person travel
 ask user which person do you want to move?
 user says (for eg) 9 (personIndex = 9)
@@ -139,7 +157,96 @@ similar to above
 */
     
 
-
+void IncrementDay()
+{
+    currentDate++;
+}
+    
+    
+    void PrintCovisPos() 
+    {
+        int count = 1;  // keeps a count of covid positive people
+        printf("Covid Positive Population\n S.No.\t\t Person\n");
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        {
+            if(personArray[i].covidStatus==1 && i!=0)
+            {
+                printf("%d-->  person[%d]\n", count , i);
+            }
+            
+            else
+                continue;
+        }
+    }
+    
+    
+    void printListOfResidents(int cityId)
+    {
+        
+        
+        int count =0;
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        {
+            if(personArray[i].location == cityId)
+            {
+                count = count + 1;
+                printf("%d -> person[%d]\n", count , i);
+                
+            }
+        }
+        
+        if(count == 0)
+        {
+            printf("The city is currently has no habitants.\n");
+        }
+    }
+    
+    
+    void GetStatus(int person_Id)  // prints current status of a person
+    {
+        printf("Hello User # %d\n", person_Id);
+        
+        if(personArray[person_Id].covidStatus == 1)
+        {
+            printf("You are Covid positive.\n")
+                printf("1. Stay where you are.\n 2. Quaratine yourself in a nearby city.\n 3. Avoid contacts with people\n\n");
+                   printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                     printf("Your Quarantine ends on %d\n", personArray[person_Id].quarantineEndsOn);
+        }
+        
+        else 
+        {
+            printf("You are Covid negative.\n")
+                 printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                    printf("You have risk factor of %d.\n",personArray[person_Id].riskFactor);
+                      
+                    if(personArray[person_Id].riskFactor == 2)
+                      {
+                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n);
+                      }
+                                 
+                                 
+                     else if(personArray[person_Id].riskFactor == 1)
+                      {
+                          printf("One or more of your primary contact came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n");
+                                 
+                      }
+                                 
+                              else
+                                 {
+                                     printf("You are currently safe. Be careful and take all the necessary precautions.\n");
+                                 }
+                                 
+          }    
+          
+                                 
+                                 
+      }
+                                 
+                          
+                      
+               
+           
 
 
 
