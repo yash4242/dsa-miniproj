@@ -54,11 +54,28 @@ int main()
    
    
     person personArray[noOfPerson+1];                       //personArray Declaration
-    //pls write personarray initialisation and input 
+    //pls write personarray initialisation and input
+    int location;               //personArray initialisation
+    for(int i=1;i<=noOfPerson;++i)
+    {
+        scanf("%d",&location);
+        personArray[i].location = location;
+        personArray[i].covidStatus = 0;
+        personArray[i].quarantineEndsOn = 0; //0 implies not in quarantine
+        personArray[i].riskFactor = 0;
+        personArray[i].contacts = (pair*)malloc(noOfPerson * sizeof(pair));
+        assert(personArray[i].contacts != NULL);
+    }
 
-
-    city cityArray[noOfCity+1];                             //personArray Declaration
+    city cityArray[noOfCity+1];                             //cityArray Declaration
     //please write initialisation (and input if any)
+    for(int i=1;i<=noOfCity;++i)        //cityArray initialisation
+    {
+        cityArray[i].DangerValue = 0; //since initailly no one is covid +ve in the city
+        cityArray[i].CovidPosNum = 0; // same as above
+        cityArray[i].PrimaryContacts = 0;
+        cityArray[i].SecondaryContacts = 0;
+    }
 
     
     
