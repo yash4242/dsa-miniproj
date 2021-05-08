@@ -109,6 +109,7 @@ void feedList()
 2) incrementing day
 currentDay++;
 
+
 3)make a person travel
 ask user which person do you want to move?
 user says (for eg) 9 (personIndex = 9)
@@ -139,7 +140,103 @@ similar to above
 */
     
 
-
+void IncrementDay()
+{
+    currentDate++;
+}
+    
+    
+    void PrintCovisPos() 
+    {
+        int count = 1;  // keeps a count of covid positive people
+        printf("Covid Positive Population\n S.No.\t\t Person\n");
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        {
+            if(personArray[i].covidStatus==1 && i!=0)
+            {
+                printf("%d-->  person[%d]\n", count , i);
+            }
+            
+            else
+                continue;
+        }
+    }
+    
+    
+    void printListOfResidents()
+    {
+        
+        
+        
+        for(int i = 1 ; i<noOfCity+1 ; i++)
+        {
+            People_Ptr temp = cityArray[i].head;
+            printf("\n%d   City[%d]\n\n ",i , i);
+            
+            
+            if(!temp)
+                printf("The city is completely empty\n");
+           
+            else
+            {
+                for(int count = 1 ; temp!=NULL ; count++)
+                {
+               
+                    printf("%d  person[%d]\n",count ,  temp->id);
+                      temp = temp->next;
+                
+                }
+            }
+        
+        }
+    }
+    
+    
+    void GetStatus(int person_Id)  // prints current status of a person
+    {
+        printf("Hello User # %d\n", person_Id);
+        
+        if(personArray[person_Id].covidStatus == 1)
+        {
+            printf("You are Covid positive.\n")
+                printf("1. Stay where you are.\n 2. Quaratine yourself in a nearby city.\n 3. Avoid contacts with people\n\n");
+                   printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                     printf("Your Quarantine ends on %d\n", personArray[person_Id].quarantineEndsOn);
+        }
+        
+        else 
+        {
+            printf("You are Covid negative.\n")
+                 printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                    printf("You have risk factor of %d.\n",personArray[person_Id].riskFactor);
+                      
+                    if(personArray[person_Id].riskFactor == 2)
+                      {
+                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n);
+                      }
+                                 
+                                 
+                     else if(personArray[person_Id].riskFactor == 1)
+                      {
+                          printf("One or more of your primary contact came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n");
+                                 
+                      }
+                                 
+                              else
+                                 {
+                                     printf("You are currently safe. Be careful and take all the necessary precautions.\n");
+                                 }
+                                 
+          }    
+          
+                                 
+                                 
+      }
+                                 
+                          
+                      
+               
+           
 
 
 
