@@ -2,15 +2,22 @@
 #pragma once
 #include "vector.h"
 
+struct People{
+	int id;
+	struct People * next;
+}
+
+typedef struct People People;
+typedef struct People * People_Ptr;
 
 struct city{
-	int dangerValue;
-	int covidPosNum;
-	int noOfResidents;
-	int noOfPrimary;
-	int noOfSecondary;
-    //double safetyValue; // = 1.0 / double(dangerValue); always DONT NEED THIS
-	//[TO DO] use linked list of ints for list of persons in this city
+	float dangerValue;     // Danger Value = covidPosNum + (# Primary/5) + (# Secondary/10)
+	float covidPosNum;
+	float noOfResidents;   // changed data type to float from int, not to conflict when
+	float noOfPrimary;     // calculating danger value.
+	float noOfSecondary;
+    double safetyValue;   // = 1.0 / double(dangerValue); always DONT NEED THIS
+	struct people * head; // use linked list of ints for list of persons in this city
 };
 
 typedef struct city city;
