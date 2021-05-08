@@ -5,7 +5,7 @@
 struct People{
 	int id;
 	struct People * next;
-}
+};
 
 typedef struct People People;
 typedef struct People * People_Ptr;
