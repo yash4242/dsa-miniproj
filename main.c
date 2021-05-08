@@ -202,7 +202,7 @@ void IncrementDay()
     }
     
     
-    void GetStatus(int person_Id)  // prints current status of a person
+    void GetStatus(int person_Id)  // prints current status of a person  & takes index of the person in the personArray as the parameter
     {
         printf("Hello User # %d\n", person_Id);
         
@@ -232,10 +232,10 @@ void IncrementDay()
                                  
                       }
                                  
-                              else
-                                 {
-                                     printf("You are currently safe. Be careful and take all the necessary precautions.\n");
-                                 }
+                      else
+                      {
+                          printf("You are currently safe. Be careful and take all the necessary precautions.\n");
+                      }
                                  
           }    
           
@@ -243,8 +243,74 @@ void IncrementDay()
                                  
       }
                                  
-                          
-                      
+                                 
+     void getCityStatus(int cityIndex) // Calculates and prints all the infromation about a city  and takes index of the city in the cityArray as the parameter
+       {
+                    int ContactsInCity[noOfPerson+1];
+                    int CovidPos = 0;
+                    int PrimNum = 0;
+                    int Normal = 0; 
+                    int SecondaryNum = 0;
+                
+           printf("The list of Covid Positive persons are:\n");
+           for(int i = 0 ; i< noOfPerson+1 ; i++)
+                {
+                    if(personArray[i].location==cityIndex && personArray[i].covidStatus ==1)
+                    {
+                       printf("person[%d] ", i);
+                        CovidPos++;
+                    }
+               
+                   
+                }
+           
+           
+           printf("\nThe list of Primary Contacts are:\n");
+           for(int i =  0; i < noOfPerson+1 ; i++)
+           {
+               
+                    if(personArray[i].location==cityIndex && personArray[i].covidStatus == 0 && personArray[i].riskFactor == 2)
+                    {
+                       printf("person[%d] ", i);
+                        PrimNum++;
+                    }
+           }
+           
+           
+            printf("\nThe list of Secondary Contacts are:\n");
+           for(int i =  0; i < noOfPerson+1 ; i++)
+           {
+               
+                    if(personArray[i].location==cityIndex && personArray[i].covidStatus == 0 && personArray[i].riskFactor == 1)
+                    {
+                       printf("person[%d] ", i);
+                        SecondaryNum++;
+                    }
+           }
+           
+            printf("\nThe list of Healthy Residents are:\n");
+           for(int i =  0; i < noOfPerson+1 ; i++)
+           {
+               
+                    if(personArray[i].location==cityIndex && personArray[i].covidStatus == 0 && personArray[i].riskFactor == 0)
+                    {
+                       printf("person[%d] ", i);
+                        Normal++;
+                    }
+           }
+           
+           float danger = (float)CovidPos  + (float)PrimNum/5.0 + (float)SecondaryNum/10.0 ; 
+           float safety = 1.0 / danger;
+           
+            printf("The number of Covid positive people are                                    : %d\n", CovidPos);
+            printf("The number of  people who are Primary Contacts of a Covid postive person   : %d\n", PrimNum );
+            printf("The number of  people who are Secondary Contacts of a Covid postive person : %d\n", SecondaryNum);
+            printf("The number of Healthy people are                                           : %d\n", Healthy);
+            printf("The danger Value of the city is                                            : %f\n" , danger);
+            printf("The safety Value of the city is                                            : %f\n", safety);
+           
+       }
+            
                
            
 
