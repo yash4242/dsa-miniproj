@@ -3,23 +3,20 @@
 #include <stdlib.h>
 
 
+
 city_ptr Create_City_Nodes(int no_of_cities)
 {
     city_ptr C = (city_ptr)malloc(no_of_cities * sizeof(city));
 
     for(long i = 0;i < no_of_cities;i++)
     {
-        People_Ptr new = (People_Ptr)malloc(sizeof(People));
+       
         C[i].covidPosNum = 0;         // Initialise all values to 0
         C[i].dangerValue = 0;
         C[i].noOfPrimary = 0;
         C[i].noOfResidents = 0;
         C[i].noOfSecondary = 0;
         C[i].safetyValue = 0;
-        C[i].head = new;
-        
-        new->id = -1;               
-        new->next = NULL;
     }
 
     return C;
@@ -31,16 +28,6 @@ void AddPeople(city C[],person P[],int NoOfPeople)
     for(long i = 0;i < NoOfPeople;i++)
     {
         int j = P[i].location;
-        People_Ptr temp = C[j].head;
-        
-        People_Ptr new = (People_Ptr)malloc(sizeof(People));
-
-        while(temp->next){
-            temp = temp->next;
-        }
-        temp->next = new;
-        new->id = i;
-        new->next = NULL;
         C[j].noOfResidents++;
         
     }
@@ -58,50 +45,34 @@ void UpdatetoPos(city C[],person P[],int array_of_positive[],int size)
         
     }
 }
+void Update_P_S(city C[],person P[],int noOfPeople)
+{
+    for(int i = 0;i < noOfPeople;i++){
+        int j = P[i].location;
+        if(P[i].riskFactor == 2){
+            C[j].noOfPrimary++;
+        }if(P[i].riskFactor == 1){
+            C[j].noOfSecondary++;
+        }
+    }
+}
 
-
-void Print_P_S(city C[],person P[], int id_of_city)
+void Print_P_S(city C[],person P[], int id_of_city,int noOfPeople)
 {
     printf("List of people who are Primary contacts are : \n");
-
-    People_Ptr temp = C[id_of_city].head;
-    temp = temp->next;
-
-    if(temp == NULL)
-    {
-        printf("There are no people in this city\n");
-    }
-    else{
-    while(temp)
-    {
-        int x = temp->id;
-
-        if(P[x].riskFactor == 2)
-        {
-            printf("%d ",x);
+    for(int i = 0;i < noOfPeople;i++){
+        if(P[i].location == id_of_city && P[i].riskFactor == 2){
+            printf("%d ",i);
         }
-        temp = temp->next;
     }printf("\n");
-    }
 
     printf("List of people who are secondary contacts are : \n");
 
-    People_Ptr temp2 = C[id_of_city].head;
-    temp2 = temp2->next;
-
-    if(temp2 == NULL){
-        printf("There are no people in this city\n");
-    }else{
-        while(temp2)
-        {
-            int y = temp2->id;
-
-            if(P[y].riskFactor == 1){
-                printf("%d ",y);
-            }
-            temp2 = temp2->next;
-        }printf("\n");
-    }
+    for(int i = 0;i < noOfPeople;i++){
+        if(P[i].location == id_of_city && P[i].riskFactor == 1){
+            printf("%d ",i);
+        }
+    }printf("\n");
 }
 
 // Added to header file
@@ -122,7 +93,7 @@ void Status_of_city(city C[],int city_index)
 // Added to header file
 void Remove_from_city(city_ptr T,person P[],int Person_ID)
 {
-    People_Ptr prev = T->head,current;
+    /*People_Ptr prev = T->head,current;
 
     if(T->head != NULL)
         current = T->head->next;
@@ -135,7 +106,7 @@ void Remove_from_city(city_ptr T,person P[],int Person_ID)
         prev = current;
         current  = current->next;
         
-    }
+    }*/
 
     T->noOfResidents--;
     if(P[Person_ID].covidStatus == 1)
@@ -172,7 +143,7 @@ float SafetyValue(city_ptr T)
 // Added to header file
 void Add_to_city(city_ptr T,person P[],int Person_ID)
 {
-    People_Ptr temp = T->head;
+    /*People_Ptr temp = T->head;
 
     while(temp->next != NULL)
     {
@@ -183,7 +154,7 @@ void Add_to_city(city_ptr T,person P[],int Person_ID)
 
     temp->next = new;
     new->id = Person_ID;
-    new->next = NULL;
+    new->next = NULL;*/
 
     T->noOfResidents++;
     if(P[Person_ID].riskFactor == 1){
@@ -198,29 +169,15 @@ void Add_to_city(city_ptr T,person P[],int Person_ID)
     T->safetyValue = SafetyValue(T);
 }
 
-void Print_Positives(city C[],person P[],int id_of_city)
+void Print_Positives(city C[],person P[],int id_of_city,int NoOfPeople)
 {
-    People_Ptr temp =  C[id_of_city].head;
-
-    temp = temp->next;
-
-    if(temp == NULL)
+    for(int i = 0;i < NoOfPeople;i++)
     {
-        printf("There are no people in this city\n");
-    }else{
-
-    while(temp){
-        int z = temp->id;
-
-        if(P[z].covidStatus == 1)
+        if(P[i].location == id_of_city && P[i].covidStatus == 1)
         {
-            printf("%d ",z);
+            printf("%d ",i);
         }
-        temp = temp->next;
-    }
-
-
-    }
+    }printf("\n");
 }
 
 void Update_City(city C[],person P[], int origin,int destination,int Person_ID)
