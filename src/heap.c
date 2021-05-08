@@ -42,7 +42,7 @@ heap* createHeap(int size)
 }
 
 //inserts in heap and adjusts the heap, also take cares about reallocing
-void insertInHeap(heap* hp, int a, int b, int weight, int length)
+void insertInHeap(heap* hp, int a, int b, lli weight, int length)
 {
     vertwdist e;
     e.a = a;

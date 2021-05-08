@@ -13,7 +13,7 @@ struct vertwdist
 {
     int a; //starting node of the edge
     int b; //ending node of the edge
-    int weight; //is equal to the dangervalue of the edge that it is leading towards
+    lli weight; //is equal to the dangervalue of the edge that it is leading towards
     int length; //as given in the input initially
 };
 typedef struct vertwdist vertwdist;
@@ -36,7 +36,7 @@ int isHeapEmpty(heap*);
 heap* createHeap(int size);
 
 //inserts in the heap and adjusts the heap, also takes care about reallocing
-void insertInHeap(heap*, int, int, int, int);
+void insertInHeap(heap*, int, int, lli, int);
 
 //pops from the heap, returns void
 void popFromHeap(heap*);
