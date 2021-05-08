@@ -69,6 +69,13 @@ int main()
 
     city cityArray[noOfCity+1];                             //cityArray Declaration
     //please write initialisation (and input if any)
+    for(int i=1;i<=noOfCity;++i)        //cityArray initialisation
+    {
+        cityArray[i].DangerValue = 0; //since initailly no one is covid +ve in the city
+        cityArray[i].CovidPosNum = 0; // same as above
+        cityArray[i].PrimaryContacts = 0;
+        cityArray[i].SecondaryContacts = 0;
+    }
 
     
     
