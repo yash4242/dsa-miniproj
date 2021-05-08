@@ -163,7 +163,7 @@ void IncrementDay()
 }
     
     
-    void PrintCovisPos() 
+    void PrintCovidPos() 
     {
         int count = 1;  // keeps a count of covid positive people
         printf("Covid Positive Population\n S.No.\t\t Person\n");
@@ -243,7 +243,33 @@ void IncrementDay()
                                  
       }
                                  
-                          
+                        
+                                 
+                                 
+                                 
+                                 
+       void GetCityStatus(int CityID)  // Prints people who are Covid Positive , Primary Contact of one , Secondary Contact of one.
+                                 
+       {    
+                                     
+                                     
+                       printf("List of people who are Covid Positive:\n");
+           
+                           for(int i = 0 ; i<noOfPerson+1 ; i++)
+                               {
+                                  if(personArray[i].covidStatus ==1 && personArray[i].location == CityID);
+                                       printf("%d ", i);
+                                }
+                                 
+                                    printf("\n");
+                                     
+                                  Print_P_S( CityArray, PersonArray,  CityID, noOfPerson + 1);
+                                     
+                                 
+       
+        }
+                                      
+
                       
                
            
