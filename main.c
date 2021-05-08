@@ -9,6 +9,146 @@ int currentDate = 0;
 #include <stdio.h>
 #include <assert.h>
 typedef long long int lli;
+
+void IncrementDay()
+{
+    currentDate++;
+}
+    
+    
+    void PrintCovidPos(person personArray[] , int noOfPerson) 
+    {
+        int count = 1;  // keeps a count of covid positive people
+        printf("Covid Positive Population\n S.No.\t\t Person\n");
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        {
+            if(personArray[i].covidStatus==1 && i!=0)
+            {
+                printf("%d-->  person[%d]\n", count , i);
+            }
+            
+            else
+                continue;
+        }
+    }
+    
+    
+    void printListOfResidents(int cityId , person personArray[] , int noOfPerson)
+    {
+        
+        
+        int count =0;
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        {
+            if(personArray[i].location == cityId)
+            {
+                count = count + 1;
+                printf("%d -> person[%d]\n", count , i);
+                
+            }
+        }
+        
+        if(count == 0)
+        {
+            printf("The city is currently has no habitants.\n");
+        }
+    }
+    
+    
+    void GetStatus(int person_Id , person personArray[] , int noOfPerson)  // prints current status of a person
+    {
+        printf("Hello User # %d\n", person_Id);
+        
+        if(personArray[person_Id].covidStatus == 1)
+        {
+            printf("You are Covid positive.\n")
+                printf("1. Stay where you are.\n 2. Quaratine yourself in a nearby city.\n 3. Avoid contacts with people\n\n");
+                   printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                     printf("Your Quarantine ends on %d\n", personArray[person_Id].quarantineEndsOn);
+        }
+        
+        else 
+        {
+            printf("You are Covid negative.\n")
+                 printf("Your are currently in City[%d].\n", personArray[person_Id].location);
+                    printf("You have risk factor of %d.\n",personArray[person_Id].riskFactor);
+                      
+                    if(personArray[person_Id].riskFactor == 2)
+                      {
+                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n);
+                      }
+                                 
+                                 
+                     else if(personArray[person_Id].riskFactor == 1)
+                      {
+                          printf("One or more of your primary contact came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n");
+                                 
+                      }
+                                 
+                              else
+                                 {
+                                     printf("You are currently safe. Be careful and take all the necessary precautions.\n");
+                                 }
+                                 
+          }    
+          
+                                 
+                                 
+      }
+                                 
+                        
+                                 
+                                 
+                                 
+                                 
+       void GetCityStatus(int CityID , person personArray[] , int noOfPerson , city cityArray[] , int noOfCity)  // Prints people who are Covid Positive , Primary Contact of one , Secondary Contact of one.
+                                 
+       {    
+                                     
+                                     
+                       printf("List of people who are Covid Positive:\n");
+           
+                           for(int i = 0 ; i<noOfPerson+1 ; i++)
+                               {
+                                  if(personArray[i].covidStatus ==1 && personArray[i].location == CityID);
+                                       printf("%d ", i);
+                                }
+                                 
+                                    printf("\n");
+                                     
+                                  Print_P_S( CityArray, PersonArray,  CityID, noOfPerson + 1);
+                                     
+                                 
+       
+        }
+                               
+                                 
+                                 
+                                 
+                                 
+    void feedList(person personArray[] , int noOfPerson)
+  {
+      int k;
+      int index;
+      
+      printf("Enter number of Covid positive people:");
+      scanf("%d", &k);
+      
+      int CovidPositive[k];
+      
+      printf("Enter the indices of the people who are Covid Postive: \n");
+      
+      for(int i = 0  ; i<k ; k++)
+      {
+           scanf("%d", &CovidPositive[i]);
+          personArray[CovidPositive[i]].covidStatus == 1;
+      }
+      
+      // isnt complete yet
+  }                               
+
+                      
+
 int main()
 {
 
@@ -163,144 +303,7 @@ similar to above
 */
     
 
-void IncrementDay()
-{
-    currentDate++;
-}
-    
-    
-    void PrintCovidPos() 
-    {
-        int count = 1;  // keeps a count of covid positive people
-        printf("Covid Positive Population\n S.No.\t\t Person\n");
-        for(int i = 0 ; i<noOfPerson+1 ; i++)
-        {
-            if(personArray[i].covidStatus==1 && i!=0)
-            {
-                printf("%d-->  person[%d]\n", count , i);
-            }
-            
-            else
-                continue;
-        }
-    }
-    
-    
-    void printListOfResidents(int cityId)
-    {
-        
-        
-        int count =0;
-        for(int i = 0 ; i<noOfPerson+1 ; i++)
-        {
-            if(personArray[i].location == cityId)
-            {
-                count = count + 1;
-                printf("%d -> person[%d]\n", count , i);
-                
-            }
-        }
-        
-        if(count == 0)
-        {
-            printf("The city is currently has no habitants.\n");
-        }
-    }
-    
-    
-    void GetStatus(int person_Id)  // prints current status of a person
-    {
-        printf("Hello User # %d\n", person_Id);
-        
-        if(personArray[person_Id].covidStatus == 1)
-        {
-            printf("You are Covid positive.\n")
-                printf("1. Stay where you are.\n 2. Quaratine yourself in a nearby city.\n 3. Avoid contacts with people\n\n");
-                   printf("Your are currently in City[%d].\n", personArray[person_Id].location);
-                     printf("Your Quarantine ends on %d\n", personArray[person_Id].quarantineEndsOn);
-        }
-        
-        else 
-        {
-            printf("You are Covid negative.\n")
-                 printf("Your are currently in City[%d].\n", personArray[person_Id].location);
-                    printf("You have risk factor of %d.\n",personArray[person_Id].riskFactor);
-                      
-                    if(personArray[person_Id].riskFactor == 2)
-                      {
-                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n);
-                      }
-                                 
-                                 
-                     else if(personArray[person_Id].riskFactor == 1)
-                      {
-                          printf("One or more of your primary contact came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n");
-                                 
-                      }
-                                 
-                              else
-                                 {
-                                     printf("You are currently safe. Be careful and take all the necessary precautions.\n");
-                                 }
-                                 
-          }    
-          
-                                 
-                                 
-      }
-                                 
-                        
-                                 
-                                 
-                                 
-                                 
-       void GetCityStatus(int CityID)  // Prints people who are Covid Positive , Primary Contact of one , Secondary Contact of one.
-                                 
-       {    
-                                     
-                                     
-                       printf("List of people who are Covid Positive:\n");
-           
-                           for(int i = 0 ; i<noOfPerson+1 ; i++)
-                               {
-                                  if(personArray[i].covidStatus ==1 && personArray[i].location == CityID);
-                                       printf("%d ", i);
-                                }
-                                 
-                                    printf("\n");
-                                     
-                                  Print_P_S( CityArray, PersonArray,  CityID, noOfPerson + 1);
-                                     
-                                 
-       
-        }
-                               
-                                 
-                                 
-                                 
-                                 
-    void feedList()
-  {
-      int k;
-      int index;
-      
-      printf("Enter number of Covid positive people:");
-      scanf("%d", &k);
-      
-      int CovidPositive[k];
-      
-      printf("Enter the indices of the people who are Covid Postive: \n");
-      
-      for(int i = 0  ; i<k ; k++)
-      {
-           scanf("%d", &CovidPositive[i]);
-          personArray[CovidPositive[i]].covidStatus == 1;
-      }
-      
-      // isnt complete yet
-                                      
 
-                      
                
            
 
