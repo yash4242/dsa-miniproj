@@ -180,31 +180,24 @@ void IncrementDay()
     }
     
     
-    void printListOfResidents()
+    void printListOfResidents(int cityId)
     {
         
         
-        
-        for(int i = 1 ; i<noOfCity+1 ; i++)
+        int count =0;
+        for(int i = 0 ; i<noOfPerson+1 ; i++)
         {
-            People_Ptr temp = cityArray[i].head;
-            printf("\n%d   City[%d]\n\n ",i , i);
-            
-            
-            if(!temp)
-                printf("The city is completely empty\n");
-           
-            else
+            if(personArray[i].location == cityId)
             {
-                for(int count = 1 ; temp!=NULL ; count++)
-                {
-               
-                    printf("%d  person[%d]\n",count ,  temp->id);
-                      temp = temp->next;
+                count = count + 1;
+                printf("%d -> person[%d]\n", count , i);
                 
-                }
             }
+        }
         
+        if(count == 0)
+        {
+            printf("The city is currently has no habitants.\n");
         }
     }
     
