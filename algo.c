@@ -93,7 +93,7 @@ void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list grap
         {
             trav = trav->next;
         }
-        length1 += trav->length;
+        length1 += (lli) trav->length;
         parentCity = queueFront(&(queueOfCities[currCity])).second;
         queuePopFront(&(queueOfCities[currCity]));
         currCity = parentCity;
@@ -122,7 +122,7 @@ void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list grap
         {
             trav = trav->next;
         }
-        length2 += trav->length;
+        length2 += (lli) trav->length;
         parentCity = queueFront(&(queueOfCities[currCity])).second;
         queuePopFront(&(queueOfCities[currCity]));
         currCity = parentCity;
@@ -150,7 +150,7 @@ void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list grap
         {
             trav = trav->next;
         }
-        length3 += trav->length;
+        length3 += (lli) trav->length;
         parentCity = queueFront(&(queueOfCities[currCity])).second;
         queuePopFront(&(queueOfCities[currCity]));
         currCity = parentCity;
@@ -186,7 +186,7 @@ void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list grap
 
     if(input == -1){return;}
 
-    
+
 
 
 
