@@ -19,8 +19,7 @@ int main()
     printf("\nEnter no. of Roads: ");
     scanf("%d", &noOfRoads);
 
-    person personArray[noOfPerson];
-
+   
     //graph is implemented like an array of linked lists.
     //so we can make list graph[noOfCity]
 /*
@@ -39,11 +38,11 @@ int main()
     N* means pointer to the struct node, also typedefed as list (its easier to work like this(atleast for me))
 */
 
-    list graph[noOfCity];
-    for(int i = 0; i<noOfCity; i++) graph[i] = NULL;
+    list graph[noOfCity+1];                                 //graph declaration
+    for(int i = 0; i<=noOfCity; i++) graph[i] = NULL;       //graph initialization
 
     int a, b, length;
-    for(int i = 0; i<noOfRoads; i++)
+    for(int i = 0; i<noOfRoads; i++)                        //graph input starts
     {
         scanf("%d %d %d", &a, &b, &length);
         pushFront(&(graph[a]), b, 0, length); //weight is zero here becuase weight of path a->b is = dangervalue of b
@@ -51,9 +50,20 @@ int main()
         //during initialsing the graph, dangervalues are are all 0 becuase we dont have the list of covid peeople
         pushFront(&(graph[b]), a, 0, length); //the length for a->b and b->a will be the same so "length" variable can be used for both insertions
     }
+                                                            //graph input done
+   
+   
+    person personArray[noOfPerson+1];                       //personArray Declaration
+    //pls write personarray initialisation and input 
 
 
-    //initializing all the persons //NOT UPDATED, WRITE AGAIN
+    city cityArray[noOfCity+1];                             //personArray Declaration
+    //please write initialisation (and input if any)
+
+    
+    
+
+    //CODE OUT OF DATE initializing all the persons //NOT UPDATED, WRITE AGAIN
     // for(int i = 0; i<noOfPerson; i++)
     // {
     //     personArray[i].covidStatus = 0;
@@ -61,7 +71,7 @@ int main()
     //     personArray[i].quarantineEndsOn = -1; //-1 means not was never in quarantine
     //     personArray[i].riskFactor = 0;
         
-    //     for(int j = 0; j<noOfPerson; j++)
+    //  CODE IS OUT OF DATE   for(int j = 0; j<noOfPerson; j++)
     //     {
     //         if(j%noOfCity==i%noOfCity) 
     //         {
@@ -105,7 +115,7 @@ user says (for eg) 9 (personIndex = 9)
 then print this person in this city (for eg 7) (sourceCity = 7;)
 then ask user which city do you want to shift him to? 
 then scanf which city i.e. scanf("%d", &destcity); 
-then call the function which has the algo==> algo(personIndex, sourceCity, destCity, graph, cityArray, personArray);
+then call the function which has the algo==> algo(personIndex, sourceCity, destCity, noOfCity, graph, cityArray, personArray);
 the function will itself print the routes, ask the user for the choice and will update the cities and people living in those cities
 and also will change location of that person. will be of returntype void.
 
