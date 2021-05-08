@@ -274,6 +274,30 @@ void IncrementDay()
                                  
        
         }
+                               
+                                 
+                                 
+                                 
+                                 
+    void feedList()
+  {
+      int k;
+      int index;
+      
+      printf("Enter number of Covid positive people:");
+      scanf("%d", &k);
+      
+      int CovidPositive[k];
+      
+      printf("Enter the indices of the people who are Covid Postive: \n");
+      
+      for(int i = 0  ; i<k ; k++)
+      {
+           scanf("%d", &CovidPositive[i]);
+          personArray[CovidPositive[i]].covidStatus == 1;
+      }
+      
+      // isnt complete yet
                                       
 
                       
