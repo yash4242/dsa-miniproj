@@ -86,4 +86,12 @@ person_ptr CreatePersonArray(int No_Of_Persons,int Station_No)
 //secondary
 
 
+/**************************************************** MAIN NEEDED FUNCTION ********************************************************************/
+
+// make a function which changes the riskFactor of contacts of all persons as soon as a person or multiple persons are declared Covid Positive ...// 
+
+//traverse through the covidList array and for each person on the list:
+      //  print out his primary contacts if date of meeting was within currentDay and currentDay - 14
+       // similarly for 2ndary contacts
+    
 
