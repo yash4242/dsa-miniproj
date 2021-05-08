@@ -7,6 +7,7 @@ int currentDate = 0;
 #include "src/linkedlist.c"
 #include "src/vector.c"
 #include <stdio.h>
+#include <assert.h>
 typedef long long int lli;
 int main()
 {
@@ -71,10 +72,15 @@ int main()
     //please write initialisation (and input if any)
     for(int i=1;i<=noOfCity;++i)        //cityArray initialisation
     {
-        cityArray[i].DangerValue = 0; //since initailly no one is covid +ve in the city
-        cityArray[i].CovidPosNum = 0; // same as above
-        cityArray[i].PrimaryContacts = 0;
-        cityArray[i].SecondaryContacts = 0;
+        cityArray[i].dangerValue = 0;//since initailly no one is covid +ve in the city
+        cityArray[i].noOfResidents = 0;
+        for(int j=1;j<=noOfPerson;++j)
+        {
+            if(personArray[j].location == i) ++(cityArray[i].noOfResidents);
+        }
+        cityArray[i].covidPosNum = 0; // same as above
+        cityArray[i].noOfPrimary = 0;
+        cityArray[i].noOfSecondary = 0;
     }
 
     
