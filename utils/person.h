@@ -6,19 +6,10 @@
 
 #include "pair.h"
 
-typedef struct Person Person;
-typedef struct Person* PtrToPerson;
+typedef struct person person;
+typedef struct person* person_ptr;
 
-typedef struct PersonArray Array;
-typedef struct PersonArray* PtrToArray;
-
-struct PersonArray
-{
-    int id;//id->identity of a person
-    PtrToPerson *index;// Ptr to each index of array of linked list of person
-};
-
-struct Person{
+struct person{
 	int location; // Current City of the person.
 	int covidStatus;// 0 for healthy, 1 for Covid+ve
 	int quarantineEndsOn;// date on which the quaranrine ends
@@ -27,8 +18,6 @@ struct Person{
     //pair's "first" element has 0/1/2: 1=> secondary contact of;
     //pairs "second" element has the date of meeting
     //aray's index means met which person
-
-    PtrToPerson Next; // for keeping the track of the next person attached to it in the linked list of a given person P
 
 
 };
