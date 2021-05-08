@@ -39,10 +39,10 @@ void UpdateToPos(city C[],person P[],int array_of_positive[],int size);
 
 
 //need to make a function which goes through this city's all residents and printout who all are riskFactor ==1 and ==2;
-void Print_P_S(city C[],persion P[], int id_of_city);
+void Print_P_S(city C[],person P[], int id_of_city);
 
 // Prints all info of a particular city
 void Status_of_city(city C[],int city_index);
 
 //updateCityStats function which updates city when noew people leave or enter, updates all members of the struct 
-void Update_City(city C[],persion P[], int origin,int destination,int Persion_ID);
+void Update_City(city C[],person P[], int origin,int destination,int Person_ID);
