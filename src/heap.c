@@ -7,14 +7,17 @@ void swap(vertwdist* x, vertwdist* y)
     tempedge.a = x->a;
     tempedge.b = x->b;
     tempedge.weight = x->weight;
+    tempedge.weight = x->length;
 
     x->a = y->a;
     x->b = y->b;
     x->weight = y->weight;
+    x->length = y->weight;
 
     y->a = tempedge.a;
     y->b = tempedge.b;
     y->weight = tempedge.weight;
+    y->length = tempedge.length;
 }
 //================================================================================================
 
@@ -39,11 +42,12 @@ heap* createHeap(int size)
 }
 
 //inserts in heap and adjusts the heap, also take cares about reallocing
-void insertInHeap(heap* hp, int a, int b, int weight)
+void insertInHeap(heap* hp, int a, int b, int weight, int length)
 {
     vertwdist e;
     e.a = a;
     e.b = b;
+    e.length = length;
     e.weight = weight;
     if((hp->numelems) +2 >= hp->capacity)
     {
