@@ -6,27 +6,28 @@
     - set these people's `primaryContactList`'s each entry to have `riskFactor` = 2
     - set these people's `secondaryContactList`'s each entry to have `riskFactor` = 1
     - set these people's `quarantineEndsOn` to `currentDate + 14`
-    - Update city structs based on the location of covid positive people
-    - Update graph's edge weights by using danger values of cities
+    - Updates city structs based on the location of covid positive people, like changing dangerValue of city, safetyValue of city, covidPosNum of city, noOfPrimary, noOfSecondary of city
+    - Updates graph's edge weights by using dangerValue of cities
 - increment day(IncrementDay() function)
     - Doesn't take any input
     - Increments currentDay (currentDay++`)
 - make a person travel(makePersonTravel() function)
     - Takes graph, personArray, cityArray, noOfPerson and noOfcity as function inputs.
     - Ask for which person wants to travel and from where to where.(sourceCity to destinationCity)
-    - This function calls another function named as algo() which takes personId, sourceCity, destCity, noOfcity, graph, cityArray, personArray and noOfPerson as                it's inputs
+    - This function calls another function named as algo() which takes person_Id, sourceCity, destCity, noOfcity, graph, cityArray, personArray and noOfPerson as                it's inputs
     - algo() function itself prints top 3(if exits) safest and shortest paths from sourceCity to destinationCity
-    - Ask user whether person travel or not.
+    - Ask user whether person travels or not.
     - According to the above input, person's location is updated and also city sturcts.
-    - make a new menu for this asking which person, and his destination, then present him top 3 paths and ask the user for approval
     - needs work on this
 - print list of +ve people(PrintCovidPos() function)
     - Takes personArray and noOfPerson as function inputs.
     - itearates through the `personArray` and print those people's indices who have `status == 1`
-- print list of who all is in which city
-    - interate through `cityArray` and print their residents
-- print all info about a specific person
-    - go the specific index in `peopleArray` and print all its contents
+- print list of who all is in which city(printLisOfResidents() function)
+    - Takes city_Id, personArray and noOfperson as function inputs.
+    - interate through `personArray` and checks if location of each person matches with city_Id, if matches then prints.
+- print all info about a specific person(GetStatus() function)
+    - Takes person_Id, personArray and noOfperson as function inputs.  
+    - Goes to the specific index in `peopleArray` and print all its contents, like covidstatus,location,quarantineEndsOn etc.
 - At city `S` who all are primary contacts of a covid +ve person
     - go to that index in `cityArray` and print those people who have `riskFactor == 2` as "primary contacts of a covid +ve patient"
     - go to that index in `cityArray` and print those people who have `riskFactor == 1` as "secondary contacts of a covid patient"
