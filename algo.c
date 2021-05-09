@@ -31,13 +31,8 @@ int cmpfunc(const void* a, const void* b)
     }
 }
 
-
-
-
-
-
-//finds the routes, prints the routes, waits for route choice, updates contact lists of traveler and people of intermidiate cities
-void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list graph[], city cityArray[], person personArray[])
+//finds the routes, prints the routes, waits for route choice, transefers traveler and updates contact lists of traveler and people of intermidiate cities
+void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list graph[], city cityArray[], person personArray[], int noOfPerson)
 {
     heap* pq = createHeap(100);
     
@@ -186,18 +181,18 @@ void algo(int personIndex, int sourceCity, int destCity, int noOfCity, list grap
 
     if(input == -1){return;}
 
+    int curr, nxt;
+    curr = sourceCity;
+    stack* s = sp[paths[input-1].whichIndexStackIsThePath];
 
+    while(isStackEmpty(s) != 1)
+    {
+        nxt = topOfStack(s);
+        popFromStack(s);
+        transferPerson(personIndex, curr, nxt, personArray, cityArray, graph, noOfPerson);
+        curr = nxt;
+    }
 
-
-
-
-    
-
-
-
-    
-
-    
-    
+    printf("person %d transferred from city %d to %d\n", personIndex, sourceCity, destCity);    
 
 }
