@@ -20,9 +20,9 @@ void IncrementDay()
     {
         int count = 1;  // keeps a count of covid positive people
         printf("Covid Positive Population\n S.No.\t\t Person\n");
-        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        for(int i = 1 ; i<noOfPerson+1 ; i++)
         {
-            if(personArray[i].covidStatus==1 && i!=0)
+            if(personArray[i].covidStatus==1)
             {
                 printf("%d-->  person[%d]\n", count , i);
             }
@@ -38,7 +38,7 @@ void IncrementDay()
         
         
         int count =0;
-        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        for(int i = 1 ; i<noOfPerson+1 ; i++)
         {
             if(personArray[i].location == cityId)
             {
@@ -98,17 +98,20 @@ void IncrementDay()
                                  
                         
                                  
+ void GetCityStatus(city cityArray[],int city_Id)
+ {
+     Status_of_city(cityArray,city_Id);
+ }
                                  
                                  
-                                 
-       void GetCityStatus(int CityID , person personArray[] , int noOfPerson , city cityArray[] , int noOfCity)  // Prints people who are Covid Positive , Primary Contact of one , Secondary Contact of one.
+       void ListOutCityStatus(int CityID , person personArray[] , int noOfPerson , city cityArray[] , int noOfCity)  // Prints people who are Covid Positive , Primary Contact of one , Secondary Contact of one.
                                  
        {    
                                      
                                      
                        printf("List of people who are Covid Positive:\n");
            
-                           for(int i = 0 ; i<noOfPerson+1 ; i++)
+                           for(int i = 1 ; i<noOfPerson+1 ; i++)
                                {
                                   if(personArray[i].covidStatus ==1 && personArray[i].location == CityID);
                                        printf("%d ", i);
@@ -116,7 +119,7 @@ void IncrementDay()
                                  
                                     printf("\n");
                                      
-                                  Print_P_S( CityArray, PersonArray,  CityID, noOfPerson + 1);
+                       Print_P_S( CityArray, PersonArray,  CityID, noOfPerson);
                                      
                                  
        
