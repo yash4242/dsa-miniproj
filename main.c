@@ -126,7 +126,7 @@ void IncrementDay()
                                  
                                  
                                  
-    void feedList(person personArray[] , int noOfPerson)
+    void feedList(person personArray[] , int noOfPerson , city cityArray[] , int noOfCity)
   {
       int k;
       int index;
@@ -138,13 +138,59 @@ void IncrementDay()
       
       printf("Enter the indices of the people who are Covid Postive: \n");
       
-      for(int i = 0  ; i<k ; k++)
+      for(int i = 0  ; i<k ; k++)  // changes all persons covidStatus to 1 if name is in the CovidPositive List.
       {
            scanf("%d", &CovidPositive[i]);
           personArray[CovidPositive[i]].covidStatus == 1;
+          
+          for(int j = 0 ; j<noOfPerson ; j++) // changes the riskFactor of all the primary Contacts and Seccondray Contacts acc. to covidStatus of a person
+          {
+             if( personArray[CovidPosititve[i]].contacts[j].first == 2)
+             {
+                 if(person[j].riskFactor < 2)
+                 personArray[j].riskFactor ==2;
+             }
+              
+              else if( personArray[CovidPosititve[i]].contacts[j].first == 1)
+              {
+                  if(personArray[j].riskFactor < 1)
+                      personArray[j].riskFactor ==1; 
+              }
+          }
+                           
       }
       
       // isnt complete yet
+        
+      UpdatetoPos(cityArray[],personArray[], CovidPositive[],int k);  
+      Update_P_S( cityArray[], personArray[],  noOfPerson);
+        
+        for(int i = 0 ; i<noOfCity ; i++)
+        {
+            float value = cityArray[i].covidPosNum + cityArray[i].noOfPrimary/5.0 + cityArray[i].noOfSecondary/10.0 ; 
+            cityArray[i].dangerValue = value;
+            cityArray[i].safetyValue = 1.0/value;
+        }
+        
+        
+        for(int i = 0 ; i<k ; i++) // prints the list of Primary and Secondary contacts if meeting date is between currentDate and currentDate - 14; 
+        {
+            printf(" person[%d]'s primary contcats in last 14 days :\n", CovidPositive[i]);
+            for(int j = 0 ; j  < noOfPerson ; j++)
+            {if(personArray[CovidPositive[i]].contacts[j].first == 2   && personArray[CovidPositive[i]].contacts[j].second > currentDate -14   &&  personArray[CovidPositive[i]].contacts[j].second <= currentDate)
+            {
+                printf(" person[%d] ", j);
+            }
+             
+             for(int j = 0 ; j  < noOfPerson ; j++)
+            {if(personArray[CovidPositive[i]].contacts[j].first == 1   && personArray[CovidPositive[i]].contacts[j].second > currentDate -14   &&  personArray[CovidPositive[i]].contacts[j].second <= currentDate)
+            {
+                printf(" person[%d] ", j);
+            }
+             
+         }
+             
+             
   }                               
 
                       
