@@ -147,7 +147,7 @@ void IncrementDay()
           {
              if( personArray[CovidPosititve[i]].contacts[j].first == 2)
              {
-                 if(person[j].riskFactor < 2)
+                 if(personArray[j].riskFactor < 2)
                  personArray[j].riskFactor ==2;
              }
               
