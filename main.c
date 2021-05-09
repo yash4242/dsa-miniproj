@@ -75,7 +75,7 @@ void IncrementDay()
                       
                     if(personArray[person_Id].riskFactor == 2)
                       {
-                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n);
+                          printf("You came in direct contact with a Covid positive person. Be careful and take all the necessary precautions.\n");
                       }
                                  
                                  
