@@ -1,0 +1,56 @@
+#working and go through of the whole project
+
+main.c
+{
+    Enter N,M,K // N=>no of stations, M=>no of roads ,K=>no of people
+
+    For the next M lines: Enter U,V,W // Indicating there is a bidirectional road between U,V of length W
+
+  ---->  Call the function which Adds Edge between the Edge U,V OF length W
+
+    For the next K lines enter i , where ith station is intial station no. of person[i]
+
+  ----> Call the function which enters insert information about each person in the empty personArray
+
+
+LINE 16
+************************************************************************************************************************************************
+   // For a day D, feed the list of covid postive people
+   ----->Call the function which takes input for the whole list
+
+    //The below function is done simultaneously while feeding the list
+    ------>Call the function which prints the list of primary and secondary contacts of covid positive people
+
+  ----->Call the function which updates the covid status for every person and updates the primary and secondary of it.
+
+  ------>Call the function which prints the list of primary and secondary contacts of covid positive people
+  
+  ----->Call the function which updates the covid status for a particular city in which covid positive people are living.
+
+    User will decide the station S2 he needs to go if its current station is S 
+
+
+
+// Algo portion 
+  ------> Call the function which calculates the danger value for each path 
+
+  ----->Call the function which provides the user with 3 SAFEST and SHORTEST PATH(safest > shortest) and asks him whether he wants to go or not
+        
+
+  if the user dont agree to go do nothing BUT if it says YES then
+
+  ----->Call the function which updates the information regarding the status of a city based on the station S2 and 
+        movement of person from S to S2 .
+
+  ----->Call the function which updates the status of a person and its primary and secondary contacts.
+
+************************************************************************************************************************************************
+LINE 48
+
+
+REPEAT all the steps between the LINE 16 AND LINE 48 untill user desires
+
+
+
+
+}
