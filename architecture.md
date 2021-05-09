@@ -1,12 +1,21 @@
 ## Menu
 - feed the list of covid +ve people
+    - Takes list of people(peopleArray) and their related information, number of persons, list of cities(cityArray) and number of cities as function inputs. 
+    - Take list of covid positive people and date from the user.
     - go to `peopleArray`'s indices and set their `status` to `1`
     - set these people's `primaryContactList`'s each entry to have `riskFactor` = 2
     - set these people's `secondaryContactList`'s each entry to have `riskFactor` = 1
     - set these people's `quarantineEndsOn` to `currentDate + 14`
+    - Update city structs based on the location of covid positive people
+    - Update graph's edge weights by using danger values of cities
 - increment day
     - do `currentDay++`
 - make a person travel
+    - Ask for which person wants to travel and from where to where.(sourceCity to destinationCity)
+    - This function calls another function named as algo() which takes personId, sourceCity, destCity, noOfcity, graph, cityArray and personArray as it's inputs
+    - algo() function itself prints top 3(if exits) safest and shortest path from sourceCity to destinationCity
+    - Ask user whether person travel or not.
+    - According to the above input, person's location is updated and also city sturcts.
     - make a new menu for this asking which person, and his destination, then present him top 3 paths and ask the user for approval
     - needs work on this
 - print list of +ve people
