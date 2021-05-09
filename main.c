@@ -61,7 +61,7 @@ void IncrementDay()
         
         if(personArray[person_Id].covidStatus == 1)
         {
-            printf("You are Covid positive.\n")
+            printf("You are Covid positive.\n");
                 printf("1. Stay where you are.\n 2. Quaratine yourself in a nearby city.\n 3. Avoid contacts with people\n\n");
                    printf("Your are currently in City[%d].\n", personArray[person_Id].location);
                      printf("Your Quarantine ends on %d\n", personArray[person_Id].quarantineEndsOn);
@@ -69,7 +69,7 @@ void IncrementDay()
         
         else 
         {
-            printf("You are Covid negative.\n")
+            printf("You are Covid negative.\n");
                  printf("Your are currently in City[%d].\n", personArray[person_Id].location);
                     printf("You have risk factor of %d.\n",personArray[person_Id].riskFactor);
                       
