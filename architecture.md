@@ -12,7 +12,7 @@
     - do `currentDay++`
 - make a person travel
     - Ask for which person wants to travel and from where to where.(sourceCity to destinationCity)
-    - This function calls another function named as algo() which takes personIdex, sourceCity, destCity, noOfcity, graph, cityArray and personArray as it's inputs
+    - This function calls another function named as algo() which takes personId, sourceCity, destCity, noOfcity, graph, cityArray and personArray as it's inputs
     - algo() function itself prints top 3(if exits) safest and shortest path from sourceCity to destinationCity
     - Ask user whether person travel or not.
     - According to the above input, person's location is updated and also city sturcts.
