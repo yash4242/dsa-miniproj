@@ -28,9 +28,15 @@
 - print all info about a specific person(GetStatus() function)
     - Takes person_Id, personArray and noOfperson as function inputs.  
     - Goes to the specific index in `peopleArray` and print all its contents, like covidstatus,location,quarantineEndsOn etc.
-- At city `S` who all are primary contacts of a covid +ve person
-    - go to that index in `cityArray` and print those people who have `riskFactor == 2` as "primary contacts of a covid +ve patient"
-    - go to that index in `cityArray` and print those people who have `riskFactor == 1` as "secondary contacts of a covid patient"
+- print all info about a specific city(GetCityStatus() function)
+    - Takes cityArray and city_Id as function inputs.
+    - This function calls other function named as Status_of_city() which takes cityArray and city_Id as it's inputs.
+    - Status_of_city prints all info about a particular city like noOfResidents, covidPosNum, noOfPrimary, noOfSecondary, dangerValue and safetyValue.  
+- At city `S` who all are primary contacts and secondary contacts of a covid +ve person and who all are covid positive(ListOutCityStatus() function)
+    - Takes city_Id, personArray, noOfPerson, cityArray anf noOfcity as it's inputs.
+    - Goes to that index in `personArray` and prints those people who have `covidStatus == 1 && location == city_Id` as "Covid positive people"
+    - This function calls another function named as Print_P_S(), which takes cityArray, personArray, city_Id, noOfPerson as it's inputs.
+    - Print_P_S() function prints all primary contacts and secondary contacts of a covid positive person in the given city.
     - (It might not be the case that all people in the city `S` will be primary contacts of a covid positive person because: consider a case when a new person comes in who never interacted with the coid positive person. in that case that new person will be the secondary contact of that person)
 
 ## Structs and info
