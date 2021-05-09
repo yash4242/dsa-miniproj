@@ -68,93 +68,73 @@ int main()
     }
 
     city cityArray[noOfCity+1];                             //cityArray Declaration
-    //please write initialisation (and input if any)
+    
     for(int i=1;i<=noOfCity;++i)        //cityArray initialisation
     {
-        cityArray[i].DangerValue = 0; //since initailly no one is covid +ve in the city
-        cityArray[i].CovidPosNum = 0; // same as above
-        cityArray[i].PrimaryContacts = 0;
-        cityArray[i].SecondaryContacts = 0;
+        cityArray[i].dangerValue = 0; //since initailly no one is covid +ve in the city
+        cityArray[i].covidPosNum = 0; // same as above
+        cityArray[i].noOfPrimary = 0;
+        cityArray[i].noOfSecondary = 0;
     }
 
     
+
+
+
+// Make this in a menu-like format: print the choices, ask for the choice number, scanf it and execute on its basis:
+
+//     Things we need to do:
+// 1)feeding list of covid positive people
+// void feedList()
+// {
+//     ask for how many people in the list, say k
+//     make an array of covidList[k] length to accomodate this list
+//     then run a loop  k times doing this for each person in the covidList
+//     {   go into personArray and update those people's structs, as written in architecture.md
+//         and for each person in the list, update the city structs where they live 
+//     }
+
+//     traverse through the covidList array and for each person on the list:
+//         print out his primary contacts if date of meeting was within currentDay and currentDay - 14
+//         similarly for 2ndary contacts
     
-
-    //CODE OUT OF DATE initializing all the persons //NOT UPDATED, WRITE AGAIN
-    // for(int i = 0; i<noOfPerson; i++)
-    // {
-    //     personArray[i].covidStatus = 0;
-    //     personArray[i].location = i%noOfCity; //assigning people tp cities, like dealing a deck of cards
-    //     personArray[i].quarantineEndsOn = -1; //-1 means not was never in quarantine
-    //     personArray[i].riskFactor = 0;
-        
-    //  CODE IS OUT OF DATE   for(int j = 0; j<noOfPerson; j++)
-    //     {
-    //         if(j%noOfCity==i%noOfCity) 
-    //         {
-    //             personArray[i].contacts[j].first = 2;
-    //             personArray[i].contacts[j].second = currentDate;
-    //         }
-    //         else personArray[i].contacts[j].first = 0;
-    //     }
-    // }
+//     after this now update the entire graph's edge weights according to the formula given in the project document
+//     take note, the edges *leading* into city x is assigned the weight of city x's dangervalue
+// }
 
 
-/*
+// 2) incrementing day
+// currentDay++;
 
-Make this in a menu-like format: print the choices, ask for the choice number, scanf it and execute on its basis:
 
-    Things we need to do:
-1)feeding list of covid positive people
-void feedList()
-{
-    ask for how many people in the list, say k
-    make an array of covidList[k] length to accomodate this list
-    then run a loop  k times doing this for each person in the covidList
-    {   go into personArray and update those people's structs, as written in architecture.md
-        and for each person in the list, update the city structs where they live 
-    }
+// 3)make a person travel
+// ask user which person do you want to move?
+// user says (for eg) 9 (personIndex = 9)
+// then print this person in this city (for eg 7) (sourceCity = 7;)
+// then ask user which city do you want to shift him to? 
+// then scanf which city i.e. scanf("%d", &destcity); 
+// then call the function which has the algo==> algo(personIndex, sourceCity, destCity, noOfCity, graph, cityArray, personArray);
+// the function will itself print the routes, ask the user for the choice and will update the cities and people living in those cities
+// and also will change location of that person. will be of returntype void.
 
-    traverse through the covidList array and for each person on the list:
-        print out his primary contacts if date of meeting was within currentDay and currentDay - 14
-        similarly for 2ndary contacts
-    
-    after this now update the entire graph's edge weights according to the formula given in the project document
-    take note, the edges *leading* into city x is assigned the weight of city x's dangervalue
+
+// 4)print list of covid positive people
+// thats easy no new func required, just traverse the personArray once
+
+// 5)print list of which person is in which city
+// similar to above
+
+// 6)print all info about a specific personn
+
+// 7)print stats of the city :
+//     traverse the link list of residents and tell who is covid +ve
+//     who all are primary contacts of a coid +ve person
+//         traverse the link list of residenst and print who has risk factor ==2 but isnt ill (for primary contact thing)
+//     who all are secondary contacts of a covid +ve person?
+//         traverse the link list of residents of the city and print who has risk fact ==1 but isnt ill 
+
+
 }
-
-2) incrementing day
-currentDay++;
-
-
-3)make a person travel
-ask user which person do you want to move?
-user says (for eg) 9 (personIndex = 9)
-then print this person in this city (for eg 7) (sourceCity = 7;)
-then ask user which city do you want to shift him to? 
-then scanf which city i.e. scanf("%d", &destcity); 
-then call the function which has the algo==> algo(personIndex, sourceCity, destCity, noOfCity, graph, cityArray, personArray);
-the function will itself print the routes, ask the user for the choice and will update the cities and people living in those cities
-and also will change location of that person. will be of returntype void.
-
-
-4)print list of covid positive people
-thats easy no new func required, just traverse the personArray once
-
-5)print list of which person is in which city
-similar to above
-
-6)print all info about a specific personn
-
-7)print stats of the city :
-    traverse the link list of residents and tell who is covid +ve
-    who all are primary contacts of a coid +ve person
-        traverse the link list of residenst and print who has risk factor ==2 but isnt ill (for primary contact thing)
-    who all are secondary contacts of a covid +ve person?
-        traverse the link list of residents of the city and print who has risk fact ==1 but isnt ill 
-
-
-*/
     
 
 void IncrementDay()
@@ -163,21 +143,21 @@ void IncrementDay()
 }
     
     
-    void PrintCovisPos() 
+void PrintCovisPos() 
+{
+    int count = 1;  // keeps a count of covid positive people
+    printf("Covid Positive Population\n S.No.\t\t Person\n");
+    for(int i = 0 ; i<noOfPerson+1 ; i++)
     {
-        int count = 1;  // keeps a count of covid positive people
-        printf("Covid Positive Population\n S.No.\t\t Person\n");
-        for(int i = 0 ; i<noOfPerson+1 ; i++)
+        if(personArray[i].covidStatus==1 && i!=0)
         {
-            if(personArray[i].covidStatus==1 && i!=0)
-            {
-                printf("%d-->  person[%d]\n", count , i);
-            }
-            
-            else
-                continue;
+            printf("%d-->  person[%d]\n", count , i);
         }
+        
+        else
+            continue;
     }
+}
     
     
     void printListOfResidents(int cityId)
@@ -274,4 +254,4 @@ void IncrementDay()
 
 
 
-}
+
