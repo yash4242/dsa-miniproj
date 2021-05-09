@@ -8,7 +8,7 @@ city_ptr Create_City_Nodes(int no_of_cities)
 {
     city_ptr C = (city_ptr)malloc(no_of_cities * sizeof(city));
 
-    for(long i = 0;i < no_of_cities;i++)
+    for(long i = 0;i < no_of_cities + 1;i++)
     {
        
         C[i].covidPosNum = 0;         // Initialise all values to 0
@@ -25,7 +25,7 @@ city_ptr Create_City_Nodes(int no_of_cities)
 // Only used initially, when we get input from user
 void AddPeople(city C[],person P[],int NoOfPeople)
 {
-    for(long i = 0;i < NoOfPeople;i++)
+    for(long i = 0;i < NoOfPeople + 1;i++)
     {
         int j = P[i].location;
         C[j].noOfResidents++;
@@ -47,7 +47,7 @@ void UpdatetoPos(city C[],person P[],int array_of_positive[],int size)
 }
 void Update_P_S(city C[],person P[],int noOfPeople)
 {
-    for(int i = 0;i < noOfPeople;i++){
+    for(int i = 0;i < noOfPeople + 1;i++){
         int j = P[i].location;
         if(P[i].riskFactor == 2){
             C[j].noOfPrimary++;
@@ -60,7 +60,7 @@ void Update_P_S(city C[],person P[],int noOfPeople)
 void Print_P_S(city C[],person P[], int id_of_city,int noOfPeople)
 {
     printf("List of people who are Primary contacts are : \n");
-    for(int i = 0;i < noOfPeople;i++){
+    for(int i = 0;i < noOfPeople + 1;i++){
         if(P[i].location == id_of_city && P[i].riskFactor == 2){
             printf("%d ",i);
         }
@@ -68,7 +68,7 @@ void Print_P_S(city C[],person P[], int id_of_city,int noOfPeople)
 
     printf("List of people who are secondary contacts are : \n");
 
-    for(int i = 0;i < noOfPeople;i++){
+    for(int i = 0;i < noOfPeople + 1;i++){
         if(P[i].location == id_of_city && P[i].riskFactor == 1){
             printf("%d ",i);
         }
@@ -171,7 +171,7 @@ void Add_to_city(city_ptr T,person P[],int Person_ID)
 
 void Print_Positives(city C[],person P[],int id_of_city,int NoOfPeople)
 {
-    for(int i = 0;i < NoOfPeople;i++)
+    for(int i = 0;i < NoOfPeople + 1;i++)
     {
         if(P[i].location == id_of_city && P[i].covidStatus == 1)
         {
