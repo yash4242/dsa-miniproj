@@ -1,9 +1,9 @@
 #pragma once
-typedef lli;
+typedef long long int lli;
 
 struct pair
 {
-    lli first;
+    int first;
     int second;
 };
 typedef struct pair pair;
