@@ -29,7 +29,7 @@ struct person
 
 };
 
-#endif
+
 
 
 //NEEDED FUNCTIONS 
@@ -95,3 +95,4 @@ person_ptr CreatePersonArray(int No_Of_Persons,int Station_No)
        // similarly for 2ndary contacts
     
 
+#endif
