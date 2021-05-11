@@ -1,7 +1,8 @@
+#pragma once
 #include "../utils/linkedlist.h"
 #include <stdlib.h>
 
-node* createNode(int b, int w, int length)
+node* createNode(int b, double w, int length)
 {
     node* p = (node*) malloc(sizeof(node));
     p->length = length;
@@ -11,7 +12,7 @@ node* createNode(int b, int w, int length)
     return p;
 }
 
-void pushFront(list* lp, int b, int w, int length)
+void pushFront(list* lp, int b, double w, int length)
 {
     if(*(lp) == NULL)
     {*lp = createNode(b, w, length); return;}

@@ -1,6 +1,7 @@
 #pragma once
 #include "../utils/queue.h"
 typedef long long int lli;
+
 void initQueue(queue* qp)
 {
     qp->front= NULL;
@@ -8,7 +9,7 @@ void initQueue(queue* qp)
 }
 
 //inserts at the back into queue
-void queuePushBack(queue* qp, lli first, int second)
+void queuePushBack(queue* qp, double first, int second)
 {
     if(qp->front == NULL && qp->back == NULL)
     {
@@ -48,18 +49,41 @@ void queuePopFront(queue* qp)
     qp->front = t;
 }
 
-//tells what is at the front of the queue of pairs, needs pair* as arg, in which it writes
-pair queueFront(queue* qp)
+void queuePopBack(queue* qp)
 {
-    pair p;
+    if(qp->front== NULL && qp->back == NULL)
+    {
+        return;
+    }
+    if(qp->front == qp->back && qp->back != NULL)
+    {
+        free(qp->back);
+        qp->back = NULL;
+        qp->front = NULL;
+        return;
+    }
+    nodePair* t = qp->front;
+
+    while(t->next->next!=NULL)
+    {
+        t = t->next;
+    }
+    free(t->next);
+    qp->back = t;    
+}
+
+//tells what is at the front of the queue of pairs, needs pair* as arg, in which it writes
+pairForQ queueFront(queue* qp)
+{
+    pairForQ p;
     p.first = qp->front->first;
     p.second = qp->front->second;
     return p;
 }
 
-pair queueBack(queue* qp)
+pairForQ queueBack(queue* qp)
 {
-    pair p;
+    pairForQ p;
     p.first = qp->back->first;
     p.second = qp->back->second;
     return p;
@@ -72,7 +96,7 @@ int queueSize(queue* qp)
     if(qp->back == qp->front && qp->front != NULL){return 1;}
     nodePair* trav = qp->front;
     int len = 1;
-    while(trav!= NULL)
+    while(trav!= qp->back)
     {
         trav = trav->next;
         len++;
@@ -80,3 +104,10 @@ int queueSize(queue* qp)
     return len;
 }
 
+int isQueueEmpty(queue* qp)
+{
+    if(qp->front == qp->back && qp->back == NULL)
+    {return 1;}
+    else
+    return 0;
+}

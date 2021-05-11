@@ -1,3 +1,4 @@
+#pragma once
 #include "../utils/heap.h"
 
 //========================================HEAP SUPPORTING FUNCS DEFINITION======================
@@ -7,12 +8,12 @@ void swap(vertwdist* x, vertwdist* y)
     tempedge.a = x->a;
     tempedge.b = x->b;
     tempedge.weight = x->weight;
-    tempedge.weight = x->length;
+    tempedge.length = x->length;
 
     x->a = y->a;
     x->b = y->b;
     x->weight = y->weight;
-    x->length = y->weight;
+    x->length = y->length;
 
     y->a = tempedge.a;
     y->b = tempedge.b;
@@ -42,7 +43,7 @@ heap* createHeap(int size)
 }
 
 //inserts in heap and adjusts the heap, also take cares about reallocing
-void insertInHeap(heap* hp, int a, int b, lli weight, int length)
+void insertInHeap(heap* hp, int a, int b, double weight, int length)
 {
     vertwdist e;
     e.a = a;
@@ -63,7 +64,7 @@ void insertInHeap(heap* hp, int a, int b, lli weight, int length)
 
     //now bubbling up
     //this is min heap, chainging into a max heap if reqd try doing here
-    while(hp->arr[parent(index)].weight > hp->arr[index].weight && index != 0)
+    while(hp->arr[parent(index)].weight > hp->arr[index].weight && index > 0) //check about >= for hp->arr[par ] thing ?
     {
         swap(&(hp->arr[parent(index)]), &(hp->arr[index]));
         index = parent(index);

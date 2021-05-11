@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __STACK_H
+#define __STACK_H
+//#pragma once
 #include <stdlib.h>
 
 struct stack
@@ -44,3 +46,5 @@ int isStackEmpty(stack* p);
 //     if(p->topindex == -1){return 1;}
 //     else{return 0;}
 // }
+
+#endif

@@ -1,5 +1,6 @@
-#pragma once
-typedef long long int lli;
+//#pragma once
+#ifndef __PAIR_H
+#define __PAIR_H
 
 struct pair
 {
@@ -7,3 +8,12 @@ struct pair
     int second;
 };
 typedef struct pair pair;
+
+struct pairForQ
+{
+    double first;
+    int second;
+};
+typedef struct pairForQ pairForQ;
+
+#endif

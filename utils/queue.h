@@ -1,4 +1,7 @@
-#pragma once
+#ifndef __QUEUE_H
+#define __QUEUE_H
+
+//#pragma once
 #include <stdlib.h>
 //DEPENDENCIES: pair
 #include "pair.h"
@@ -6,7 +9,7 @@ typedef long long int lli;
 
 struct nodePair
 {
-    lli first;
+    double first;
     int second;
     struct nodePair* next;
     
@@ -33,7 +36,7 @@ void initQueue(queue* qp);
 
 
 //inserts at the back into queue
-void queuePushBack(queue* qp, lli first, int second);
+void queuePushBack(queue* qp, double first, int second);
 // {
 //     if(qp->front == NULL && qp->back == NULL)
 //     {
@@ -74,10 +77,12 @@ void queuePopFront(queue* qp);
 // }
 
 //tells what is at the front of the queue of pairs, needs pair* as arg, in which it writes
-pair queueFront(queue* qp);
+pairForQ queueFront(queue* qp);
 // {
 //     pp->first = qp->front->first;
 //     pp->second = qp->front->second;
 // }
-pair queueBack(queue* qp);
+pairForQ queueBack(queue* qp);
 
+int isQueueEmpty(queue* qp);
+#endif

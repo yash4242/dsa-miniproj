@@ -1,3 +1,4 @@
+#pragma once
 #include "../utils/vector.h"
 
 //===========================VECTORINT FUC DEFINITONS==========================

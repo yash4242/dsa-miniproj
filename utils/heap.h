@@ -1,5 +1,7 @@
 //DEPENDENCIES: none
-#pragma once
+#ifndef __HEAP_H
+#define __HEAP_H
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -7,13 +9,13 @@ typedef long long int lli;
 #define INF (long long) 1e16
 
 
-lli min(lli a, lli b){return a<b?a:b;}
+double min(double a, double b){return a<b?a:b;}
 
 struct vertwdist
 {
     int a; //starting node of the edge
     int b; //ending node of the edge
-    lli weight; //is equal to the dangervalue of the edge that it is leading towards
+    double weight; //is equal to the dangervalue of the edge that it is leading towards
     int length; //as given in the input initially
 };
 typedef struct vertwdist vertwdist;
@@ -36,7 +38,7 @@ int isHeapEmpty(heap*);
 heap* createHeap(int size);
 
 //inserts in the heap and adjusts the heap, also takes care about reallocing
-void insertInHeap(heap*, int, int, lli, int);
+void insertInHeap(heap*, int, int, double, int);
 
 //pops from the heap, returns void
 void popFromHeap(heap*);
@@ -55,3 +57,5 @@ int parent(int x){return (x-1)/2;}
 void swap(vertwdist* x, vertwdist* y);
 
 //=================================================================================
+
+#endif

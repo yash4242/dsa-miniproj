@@ -39,3 +39,8 @@ int isStackEmpty(stack* p)
     if(p->topindex == -1){return 1;}
     else{return 0;}
 }
+
+void clearStack(stack* sp)
+{
+    sp->topindex = -1;
+}

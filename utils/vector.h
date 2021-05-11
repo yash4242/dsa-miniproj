@@ -1,5 +1,7 @@
 //DEPENDENCIES: pair
-#pragma once
+//#pragma once
+#ifndef __VECTOR_H
+#define __VECTOR_H
 #include <stdlib.h>
 #include "pair.h" 
 
@@ -44,3 +46,4 @@ void vectorPairPushBack(vectorPair* vpp, int a, int b);
 
 
 //[OPTIONAL] should we remove those people who met the person more than 15 days ago?
+#endif
